@@ -4,20 +4,34 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+
 class AppTest {
-    @Test
-    void googleTest() throws InterruptedException {
+    WebDriver browser;
+
+    @BeforeEach
+    void beforeEach() {
         var options = new FirefoxOptions();
         options.addArguments("--safe-mode");
-        var browser = new FirefoxDriver(options);
+        options.setCapability("webSocketUrl", true);
+        browser = new FirefoxDriver(options);
+    }
 
+    @Test
+    void googleTest() throws InterruptedException {
         browser.get("https://www.google.com");
         Thread.sleep(5000);
+    }
+
+    @AfterEach
+    void afterEach() {
         browser.close();
     }
 }
