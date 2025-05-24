@@ -4,11 +4,20 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+    @Test
+    void googleTest() throws InterruptedException {
+        var options = new FirefoxOptions();
+        options.addArguments("--safe-mode");
+        var browser = new FirefoxDriver(options);
+
+        browser.get("https://www.google.com");
+        Thread.sleep(5000);
+        browser.close();
     }
 }
