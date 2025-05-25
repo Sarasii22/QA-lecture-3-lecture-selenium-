@@ -4,6 +4,7 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -28,6 +29,11 @@ class AppTest {
     void googleTest() throws InterruptedException {
         browser.get("https://www.google.com");
         Thread.sleep(5000);
+
+        // Check if the title contains "Google" - ADD
+        var googleSearchBox = browser.findElement(By.name("q"));
+        googleSearchBox.sendKeys("iphone");
+        Thread.sleep(2000);
     }
 
     @AfterEach
